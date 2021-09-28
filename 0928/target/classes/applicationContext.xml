@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+	
+	<!-- 스프링 컨테이너가 관리 할 클래스 등록 == 객체화 -->
+	<bean class="test.Test" id="test" />
+	<bean class="test.IPhone" id="Phone" />
+	<!-- 객체 변경 시 현재 설정파일에서 수정해주면 되므로 자바 코드는 수정할 필요가 없다! -->
+</beans>
