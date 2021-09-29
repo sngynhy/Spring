@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+	<!-- constructor-arg ref="객체" : 생성자 호출 시 인자로 넘길 객체 기재 -->
+	<!-- constructor-arg value="값" : 생성자 호출 시 인자로 넘길 값 기재 -->
+	<!--
+	<bean class="test.IPhone" id="Phone">
+		<constructor-arg ref="gw"></constructor-arg>
+		<constructor-arg value="아이폰유저"></constructor-arg>
+	</bean>
+	
+	<bean class="test.GalaxyWatch" id="gw" scope="prototype" />
+	<bean class="test.AppleWatch" id="aw" scope="prototype" />  -->
+	
+	<bean class="test2.Cat" id="animal">
+		<constructor-arg ref="ct"></constructor-arg>
+		<constructor-arg value="고양이"></constructor-arg>
+	</bean>
+	
+	<bean class="test2.CatPlay" id="ct" scope="prototype" />
+	<bean class="test2.DogPlay" id="dt" scope="prototype" />
+</beans>
