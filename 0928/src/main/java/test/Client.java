@@ -10,7 +10,7 @@ public class Client {
 		// 1. 스프링 컨테이너 동작시키기
 		AbstractApplicationContext factory = new GenericXmlApplicationContext("applicationContext.xml");
 		
-		// 2. 객체 요청 시 해당 객체를 줌 == Look up
+		// 2. 객체 요청(==Look up) 시 해당 객체를 건네줌
 		Test t = (Test) factory.getBean("test"); // 파라미터 값 == applicationContext.xml에 bean 등록 시 설정한 id 값
 		t.print();
 		

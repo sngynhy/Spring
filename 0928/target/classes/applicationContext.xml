@@ -3,8 +3,21 @@
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
 	
-	<!-- 스프링 컨테이너가 관리 할 클래스 등록 == 객체화 -->
+	<!-- 스프링 컨테이너가 관리 할 클래스 등록 == 객체화는 반드시 기본생성자로! -->
 	<bean class="test.Test" id="test" />
 	<bean class="test.IPhone" id="Phone" />
 	<!-- 객체 변경 시 현재 설정파일에서 수정해주면 되므로 자바 코드는 수정할 필요가 없다! -->
+	
+	<bean class="test.Test" id="test2" init-method="initFunc" />
+	<!-- init-method : 객체 생성 시 함께 호출하는 함수 (멤버변수 초기화 함수)
+		destroy-method : 객체 소멸 시 함께 호출하는 함수 (해제 역할) -->
+	
+	<bean class="test.Test" id="test3" lazy-init="true" />
+	<!-- lazy-init : 지연 로딩, 사용자가 test 객체를 사용할때 적재 / 기본값을 즉시 로딩(pre-loading) -->
+	
+	<bean class="test.Test" id="test4" scope="singleton" />
+	<!-- 싱글톤 처리 : 하나의 객체를 공유하여 여러번 사용 가능하도록 설정 (기본값으로 생략 가능) -->
+	
+	<bean class="test.Test" id="test5" scope="prototype" />
+	<!-- prototype : 사용자가 객체를 만들때마다 매번 객체 생성 -->
 </beans>
