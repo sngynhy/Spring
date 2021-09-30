@@ -12,7 +12,7 @@ public class Client {
 		AbstractApplicationContext factory = new GenericXmlApplicationContext("applicationContext.xml");
 		
 		// 2. °´Ã¼ ¿äÃ»(==Look up) ½Ã ÇØ´ç °´Ã¼¸¦ °Ç³×ÁÜ
-		Phone phone = (Phone) factory.getBean("Phone");
+		Phone phone = (Phone) factory.getBean("phone");
 		phone.powerOn();
 		phone.volumeUp();
 		phone.volumeDown();

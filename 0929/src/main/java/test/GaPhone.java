@@ -6,7 +6,7 @@ public class GaPhone implements Phone {
 	private Watch watch; // 낮은 결합도를 위해 SmartWatch가 아닌 Watch로
 	private String user;
 	
-	public GaPhone() {
+	public GaPhone() { // 생성자 주입 사용 시 기본 생성자는 필수 아님!
 		System.out.println("갤럭시 기본 생성자 호출");
 	}
 	public GaPhone(Watch watch, String user) { // 불필요한 객체 생성을 막기 위해 객체를 인자로 전달받음
@@ -15,13 +15,15 @@ public class GaPhone implements Phone {
 		System.out.println("갤럭시 생성자 호출");
 	}
 	public void volumeUp() {
-//		GalaxyWatch gw = new GalaxyWatch();
 		watch.volumeUp();
+//		GalaxyWatch gw = new GalaxyWatch();
+//		gw.volumeUp();
 //		System.out.println("갤럭시 볼륨 += 10");
 	}
 	public void volumeDown() {
-//		GalaxyWatch gw = new GalaxyWatch(); // 위에서 이미 생성된 객체를 다시 생성해서 사용하는건 메모리 낭비! -> 이때 싱글톤 패턴을 사용!
 		watch.volumeDown();
+//		GalaxyWatch gw = new GalaxyWatch(); // 위에서 이미 생성된 객체를 다시 생성해서 사용하는건 메모리 낭비! -> 이때 싱글톤 패턴을 사용!
+//		gw.volumeDown();
 //		System.out.println("갤럭시 볼륨 -= 10");
 	}
 	public void powerOn() {
