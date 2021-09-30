@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:p="http://www.springframework.org/schema/p"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+	
+	<!-- 세터 주입 (Setter Injection)
+		흐름 : bean 객체 먼저 생성 후 setter 주입 수행 -->
+	<!-- property name="멤버변수명" ref="객체" -->
+	<!-- <bean class="test.IPhone" id="phone">
+		<property name="watch" ref="aw"></property>
+		<property name="user" value="seong"></property>
+	</bean> -->
+	
+	<!-- 위의 코드를 p를 추가하여 아래와 같이 간단히 작성 가능 -->
+	<bean class="test.IPhone" id="phone" p:watch-ref="aw" p:user="seong" />
+	
+	<bean class="test.GalaxyWatch" id="gw" scope="prototype" />
+	<bean class="test.AppleWatch" id="aw" scope="prototype" />
+
+	<bean class="test2.Cat" id="animal" p:toy-ref="ct" p:name="moncher"/>
+	
+	<bean class="test2.CatPlay" id="ct" scope="prototype" />
+	<bean class="test2.DogPlay" id="dt" scope="prototype" />
+	
+	<!-- 컬렉션 프레임워크 사용 -->
+	<bean class="collectionBean.CBean" id="cb">
+		<property name="list">
+			<list>
+				<value>apple mango</value>
+				<value>바나나</value>
+				<value>키위새</value>
+			</list>
+		</property>
+		<property name="map">
+			<map>
+				<entry>
+					<key><value>apple</value></key>
+					<value>사과</value>
+				</entry>
+				<entry>
+					<key><value>banana</value></key>
+					<value>바나나</value>
+				</entry>
+				<entry>
+					<key><value>kiwi</value></key>
+					<value>새</value>
+				</entry>
+			</map>
+		</property>
+	</bean>
+	
+	<bean class="test2.CBean" id="cb2">
+		<property name="list">
+			<list>
+				<value>lal</value>
+				<value>moncher</value>
+				<value>leon</value>
+			</list>
+		</property>
+		<property name="map">
+			<map>
+				<entry>
+					<key><value>lal</value></key>
+					<value>코숏</value>
+				</entry>
+				<entry>
+					<key><value>moncher</value></key>
+					<value>페르시안</value>
+				</entry>
+				<entry>
+					<key><value>leon</value></key>
+					<value>먼치킨</value>
+				</entry>
+			</map>
+		</property>
+	</bean>
+</beans>
