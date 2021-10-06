@@ -17,12 +17,12 @@ public class MemberDAO {
 	Connection conn = null;
 	PreparedStatement pstmt = null;
 	ResultSet rs = null;
-	
+
 	private final String insertSQL = "insert into members values (?, ?, ?, ?)";
 	private final String updateSQL = "update members set pw = ?, name = ? where id = ?";
 	private final String deleteSQL = "delete board where id = ?";
 	private final String getMemberListSQL = "select * from members";
-	private final String getMemberSQL = "select * from members where id = ?";
+	private final String loginSQL = "select * from members where id = ?";
 	
 	public void insertMember(MemberVO invo) {
 		
@@ -98,13 +98,13 @@ public class MemberDAO {
 		return datas;
 	}
 	
-	public MemberVO getMember(MemberVO invo) {
+	public MemberVO login(MemberVO invo) {
 
 		conn = JDBC.getConnection();
 		MemberVO outvo = null;
 		
 		try {
-			pstmt = conn.prepareStatement(getMemberSQL);
+			pstmt = conn.prepareStatement(loginSQL);
 			pstmt.setString(1, invo.getId());
 			rs = pstmt.executeQuery();
 			if (rs.next()) {

@@ -13,7 +13,7 @@ import model.common.JDBC;
 
 // DAO -> 드라이버, DBCP, MyBatis, JPA, ...
 // Service에서 DAO 객체를 이용하여 CRUD 기능을 제공할 예정!
-// Phone (Service) <--> Watch(DAO)
+// ex) Phone (Service) <--> Watch(DAO)
 
 @Repository("boardDAO") // bean 객체로 생성 - model에서 사용한다는 것을 명시하기 위해 @Repository (Component의 하위 어노테이션)
 public class BoardDAO {

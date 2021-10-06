@@ -14,11 +14,20 @@ public class MemberClient {
 		MemberService ms = (MemberService) factory.getBean("memberService");
 		
 		MemberVO vo = new MemberVO();
+//		vo.setId("seong");
+//		vo.setPw("pw");
+//		vo.setName("¼ºÀ±Çý");
+//		vo.setRole("user");
+//		ms.insertMember(vo);
+		
 		vo.setId("seong");
 		vo.setPw("pw");
-		vo.setName("¼ºÀ±Çý");
-		vo.setRole("user");
-		ms.insertMember(vo);
+		if (ms.login(vo) != null) {
+			System.out.println("·Î±×ÀÎ ¼º°ø!");
+		} else {
+			System.out.println("·Î±×ÀÎ ½ÇÆÐ!");
+		}
+		
 		
 		List<MemberVO> datas = ms.getMemberList(vo);
 		for (MemberVO data : datas) {

@@ -28,7 +28,7 @@ public class MemberServiceImpl implements MemberService {
 		return memberDAO.getMemberList(invo);
 	}
 	@Override
-	public MemberVO getMember(MemberVO invo) {
-		return memberDAO.getMember(invo);
+	public MemberVO login(MemberVO invo) {
+		return memberDAO.login(invo);
 	}
 }

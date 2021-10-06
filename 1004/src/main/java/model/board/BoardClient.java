@@ -14,10 +14,10 @@ public class BoardClient {
 		BoardService bs = (BoardService) factory.getBean("boardService"); // 서비스 어노테이션에 설정한 이름
 		
 		BoardVO vo = new BoardVO();
-		vo.setTitle("글제목");
-		vo.setContent("내용 작성중~~");
-		vo.setWriter("관리자");
-		bs.insertBoard(vo);
+//		vo.setTitle("글제목");
+//		vo.setContent("내용 작성중~~");
+//		vo.setWriter("관리자");
+//		bs.insertBoard(vo);
 		
 		List<BoardVO> datas = bs.getBoardList(vo);
 		for (BoardVO data : datas) {
