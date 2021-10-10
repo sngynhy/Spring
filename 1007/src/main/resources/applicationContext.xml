@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:aop="http://www.springframework.org/schema/aop"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.2.xsd
+		http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-4.2.xsd">
+	
+	<!-- 컴포넌트 스캔 -->
+	<context:component-scan base-package="model"></context:component-scan>
+	
+	<!-- <bean class="com.seong.app.common.LogAdvice" id="log" />
+	<bean class="com.seong.app.common.AfterAdvice" id="afAdvice" />
+	<bean class="com.seong.app.common.AfterReturningAdvice" id="arAdvice" />
+	<bean class="com.seong.app.common.AfterThrowingAdvice" id="atAdvice" /> -->
+	<bean class="com.seong.app.common.AroundAdvice" id="aroundAdvice" />
+	
+	<!-- AOP 설정
+		1. 비즈니스메소드(CRUD) 핵심로직==핵심관심
+		2. 로깅,트랜잭션,예외처리 등 부가적인로직==횡단관심 -->
+	<aop:config>
+		<aop:pointcut expression="execution(* model.board.*Impl.get*(..))" id="aPointCut"/>
+		<aop:pointcut expression="execution(* model.board.*Impl.*(..))" id="bPointCut"/>
+		<aop:pointcut expression="execution(* model.meber.*Impl.*(..))" id="cPointCut"/>
+		
+		<!-- returning, throwing의 속성값은 바인드 변수명과 동일하게 작성 - 컨테이너가 변수명을 알 수 있도록! -->
+		<!-- <aop:aspect ref="arAdvice">
+			<aop:after-returning method="printlog" pointcut-ref="cPointCut" returning="obj" />
+		</aop:aspect> -->
+		
+		<!-- <aop:aspect ref="atAdvice">
+			<aop:after-throwing method="printlog" pointcut-ref="bPointCut" throwing="e"/>
+		</aop:aspect> -->
+		
+		<aop:aspect ref="aroundAdvice">
+			<aop:around method="printlog" pointcut-ref="bPointCut" />
+		</aop:aspect>
+		
+		
+		<!-- <aop:aspect ref="afAdvice">
+			<aop:after method="printlog" pointcut-ref="bPointCut" />
+		</aop:aspect>
+		<aop:aspect ref="arAdvice">
+			<aop:after-returning method="printlog" pointcut-ref="aPointCut" />
+		</aop:aspect>
+		<aop:aspect ref="atAdvice">
+			<aop:after-throwing method="printlog" pointcut-ref="bPointCut" />
+		</aop:aspect>
+		<aop:aspect ref="aroundAdvice">
+			<aop:around method="printlog" pointcut-ref="bPointCut" />
+		</aop:aspect>
+
+		<aop:aspect ref="log">
+			<aop:before method="printLog" pointcut-ref="aPointCut"/>
+		</aop:aspect> -->
+	</aop:config>
+</beans>
+	
+	<!-- pointcut : 특정 객체를 어떻게 표현할지 등록 == 핵심관심 등록
+		포인트컷 표현식
+		expression="execution(리턴타입 패키지.클래스명.메소드명(매개변수))" , "메소드 시그니처" 리턴타입
+		맨 앞 * 모든 리턴타입 허용, *Impl : 클래스무관, *(..) : * 어떤 메소드, 어떤 인자든 허용 (..은 인자의 개수와 타입을 를 모를 때)
+		id="표현할 값"
+		 -->
+	<!-- advisor : 외부에서 만들어진 코드를 등록할 때, 멤버변수나 메소드를 모를 때 ex) 트랜잭션,보안 == 횡단관심 등록
+		advice-ref="참조할 객체"
+	 -->
+	<!-- aspect : 본인이 만든 코드를 등록할 때 ex) 로깅 == 횡단관심 등록
+			ref="결합할 객체"
+		before : 로깅에 잘 진입했는지 확인
+		after : 로깅이 잘 끝났는지
+		method="사용할 메소드명"
+	 -->
