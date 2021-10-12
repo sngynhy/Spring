@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:aop="http://www.springframework.org/schema/aop"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.2.xsd
+		http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-4.2.xsd">
+	
+	<!-- 컴포넌트 스캔 -->
+	<context:component-scan base-package="model"/>
+	<context:component-scan base-package="com.seong.app"/>
+	
+	<!-- jdbcTemplate 객체 등록 -->
+	<bean class="org.springframework.jdbc.core.JdbcTemplate" id="jdbcTemplate">
+		<property ref="dataSource" name="dataSource"/>
+	</bean>
+	
+	<!-- bean으로 Datasource 객체 등록 -->
+	<!-- 객체를 해제하는 시점에 자동 반납을 위하여 destroy-method="colse" 처리 -->
+	<bean class="org.apache.commons.dbcp.BasicDataSource" id="dataSource" destroy-method="close">
+		<property name="driverClassName" value="oracle.jdbc.driver.OracleDriver"/>
+		<property name="url" value="jdbc:oracle:thin:@localhost:1521:xe"/>
+		<property name="username" value="sngynhy"/>
+		<property name="password" value="qwer"/>
+	</bean>
+	
+	<!-- 어노테이션으로 AOP 사용할 것을 컨테이너에 알려주기 -->
+	<aop:aspectj-autoproxy />
+
+</beans>
