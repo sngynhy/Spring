@@ -7,20 +7,23 @@
 <title>Insert title here</title>
 </head>
 <body>
-<form action="login.do" method="post">
+<form action="insertMember.do" method="post">
 	<table>
 		<tr>
 			<td>아이디</td>
-			<td><input type="text" name="id" required="required"></td>
+			<td><input type="text" name="id" required></td>
 		</tr>
 		<tr>
 			<td>비밀번호</td>
-			<td><input type="password" name="pw" required="required"></td>
+			<td><input type="password" name="pw" required></td>
+		</tr>
+		<tr>
+			<td>이름</td>
+			<td><input type="text" name="name" required></td>
 		</tr>
 		<tr>
 			<td colspan="2" align="right">
-				<a href="signup.jsp">회원가입</a>
-				<input type="submit" value="로그인">
+				<input type="submit" value="가입하기">
 			</td>
 		</tr>
 	</table>

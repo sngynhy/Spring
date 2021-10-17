@@ -13,6 +13,7 @@ import model.member.MemberVO;
 public class LoginAction implements Action {
 	@Override
 	public ActionForward execute(HttpServletRequest request, HttpServletResponse response) throws IOException {
+		
 		ActionForward forward = null;
 		
 		MemberDAO mDAO = new MemberDAO();
@@ -26,14 +27,8 @@ public class LoginAction implements Action {
 			session.setAttribute("sessionID", mVO.getId());
 			
 			forward = new ActionForward();
-			
-			if (mVO.getRole().equals("ADMIN")) {
-				forward.setPath("admin.do");
-				forward.setRedirect(true);
-			} else {
-				forward.setPath("index.do");
-				forward.setRedirect(true);
-			}
+			forward.setPath("main.do");
+			forward.setRedirect(true);
 			
 		} else {
 			response.setContentType("text/html; charset=UTF-8");

@@ -9,9 +9,13 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import controller.action.ActionForward;
+import controller.action.InsertBoardAction;
+import controller.action.InsertMemberAction;
 import controller.action.LoginAction;
 import controller.action.LogoutAction;
 import controller.action.MainAction;
+import controller.action.SearchBoardAction;
+import controller.action.SelectOneBoardAction;
 
 // control.jsp 역할
 // FrontController
@@ -41,26 +45,20 @@ public class DispatcherServlit extends HttpServlet {
 		/* 2. control을 매핑하는 역할 == if(action.equals("main")) */
 		ActionForward forward = null;
 		
-		if (action.equals("/main.do")) {
+		if (action.equals("/main.do")) { // 메인 - 게시글 목록 출력
 			forward = new MainAction().execute(request, response);
-		} else if (action.equals("/login.do")) {
+		} else if (action.equals("/login.do")) { // 로그인
 			forward = new LoginAction().execute(request, response);
-		} else if (action.equals("/logout.do")) {
+		} else if (action.equals("/logout.do")) { // 로그아웃
 			forward = new LogoutAction().execute(request, response);
-		} else if (action.equals("/signup.do")) {
-			forward = new SignupAction().execute(request, response);
-		} else if (action.equals("/checkID.do")) {
-			forward = new CheckIDAction().execute(request, response);
-		} else if (action.equals("/insertMsg.do")) {
-			forward = new InsertMsgAction().execute(request, response);
-		} else if (action.equals("/deleteMsg.do")) {
-			forward = new DeleteMsgAction().execute(request, response);
-		} else if (action.equals("/insertRmsg.do")) {
-			forward = new InsertRmsgAction().execute(request, response);
-		} else if (action.equals("/deleteRmsg.do")) {
-			forward = new DeleteRmsgAction().execute(request, response);
-		} else if (action.equals("/favcount.do")) {
-			forward = new FavcountAction().execute(request, response);
+		} else if (action.equals("/insertMember.do")) { // 회원가입
+			forward = new InsertMemberAction().execute(request, response);
+		} else if (action.equals("/insertBoard.do")) { // 게시글 작성
+			forward = new InsertBoardAction().execute(request, response);
+		} else if (action.equals("/searchBoard.do")) { // 게시글 검색
+			forward = new SearchBoardAction().execute(request, response);
+		} else if (action.equals("/selectBoard.do")) { // 게시글 보기
+			forward = new SelectOneBoardAction().execute(request, response);
 		} else { // 만약 잘못된 action값인 경우
 			forward = new ActionForward();
 			forward.setRedirect(false);

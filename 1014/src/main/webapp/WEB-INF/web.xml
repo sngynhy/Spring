@@ -12,6 +12,11 @@
     <url-pattern>*.do</url-pattern>
   </servlet-mapping>
   
+  <context-param>
+	  <param-name>encoding</param-name>
+	  <param-value>UTF-8</param-value>
+	</context-param>
+	
   <error-page>
     <exception-type>java.lang.Throwable</exception-type>
     <location>/error/error.jsp</location>

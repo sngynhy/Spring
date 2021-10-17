@@ -7,20 +7,19 @@
 <title>Insert title here</title>
 </head>
 <body>
-<form action="login.do" method="post">
+<form action="insertBoard.do" method="post">
 	<table>
 		<tr>
-			<td>아이디</td>
-			<td><input type="text" name="id" required="required"></td>
+			<td>제목</td>
+			<td><input type="text" name="title" required="required" style="width: 200px;"></td>
 		</tr>
 		<tr>
-			<td>비밀번호</td>
-			<td><input type="password" name="pw" required="required"></td>
+			<td>내용</td>
+			<td><textarea name="content" style="width: 202px; height: 71px;"></textarea></td>
 		</tr>
 		<tr>
 			<td colspan="2" align="right">
-				<a href="signup.jsp">회원가입</a>
-				<input type="submit" value="로그인">
+				<input type="submit" value="글쓰기">
 			</td>
 		</tr>
 	</table>

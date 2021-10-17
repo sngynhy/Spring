@@ -7,38 +7,39 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.springframework.stereotype.Repository;
-
 import model.common.JDBC;
 
-@Repository("memberDAO")
 public class MemberDAO {
 	
 	Connection conn = null;
 	PreparedStatement pstmt = null;
 	ResultSet rs = null;
 
-	private final String insertSQL = "insert into members values (?, ?, ?, ?)";
+	private final String insertSQL = "insert into members (id, pw, name) values (?, ?, ?)";
 	private final String updateSQL = "update members set pw = ?, name = ? where id = ?";
 	private final String deleteSQL = "delete board where id = ?";
 	private final String getMemberListSQL = "select * from members";
 	private final String loginSQL = "select * from members where id = ? and pw = ?";
 	
-	public void insertMember(MemberVO invo) {
+	public boolean insertMember(MemberVO invo) {
 		
 		conn = JDBC.getConnection();
+		boolean flag = false;
 		
 		try {
 			pstmt = conn.prepareStatement(insertSQL);
 			pstmt.setString(1, invo.getId());
 			pstmt.setString(2, invo.getPw());
 			pstmt.setString(3, invo.getName());
-			pstmt.setString(4, invo.getRole());
+			if (pstmt.executeUpdate() > 0) {
+				flag = true;
+			}
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {
 			JDBC.close(conn, pstmt);
 		}
+		return flag;
 	}
 	
 	public void updateMember(MemberVO invo) {
