@@ -7,6 +7,8 @@
 <title>Insert title here</title>
 </head>
 <body>
+<h4>${sessionID}님, 환영합니다!🤗 <a href="logout.do" style="font-size: 12px">로그아웃</a></h4>
+<hr>
 <form action="insertBoard.do" method="post">
 	<table>
 		<tr>

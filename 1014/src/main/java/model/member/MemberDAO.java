@@ -10,7 +10,7 @@ import java.util.List;
 import model.common.JDBC;
 
 public class MemberDAO {
-	
+
 	Connection conn = null;
 	PreparedStatement pstmt = null;
 	ResultSet rs = null;
@@ -20,12 +20,12 @@ public class MemberDAO {
 	private final String deleteSQL = "delete board where id = ?";
 	private final String getMemberListSQL = "select * from members";
 	private final String loginSQL = "select * from members where id = ? and pw = ?";
-	
+
 	public boolean insertMember(MemberVO invo) {
-		
+
 		conn = JDBC.getConnection();
 		boolean flag = false;
-		
+
 		try {
 			pstmt = conn.prepareStatement(insertSQL);
 			pstmt.setString(1, invo.getId());
@@ -41,11 +41,11 @@ public class MemberDAO {
 		}
 		return flag;
 	}
-	
+
 	public void updateMember(MemberVO invo) {
-		
+
 		conn = JDBC.getConnection();
-		
+
 		try {
 			pstmt = conn.prepareStatement(updateSQL);
 			pstmt.setString(1, invo.getPw());
@@ -58,7 +58,7 @@ public class MemberDAO {
 			JDBC.close(conn, pstmt);
 		}
 	}
-	
+
 	public void deleteMember(MemberVO invo) {
 
 		conn = JDBC.getConnection();
@@ -73,12 +73,12 @@ public class MemberDAO {
 			JDBC.close(conn, pstmt);
 		}
 	}
-	
+
 	public List<MemberVO> getMemberList(MemberVO invo) {
 
 		conn = JDBC.getConnection();
 		List<MemberVO> datas = new ArrayList<MemberVO>();
-		
+
 		try {
 			pstmt = conn.prepareStatement(getMemberListSQL);
 			rs = pstmt.executeQuery();
@@ -98,12 +98,12 @@ public class MemberDAO {
 		}
 		return datas;
 	}
-	
+
 	public MemberVO login(MemberVO invo) {
 
 		conn = JDBC.getConnection();
 		MemberVO outvo = null;
-		
+
 		try {
 			pstmt = conn.prepareStatement(loginSQL);
 			pstmt.setString(1, invo.getId());
@@ -123,5 +123,29 @@ public class MemberDAO {
 			JDBC.close(conn, pstmt);
 		}
 		return outvo;
+	}
+
+	public boolean checkID(String id) {
+
+		conn = JDBC.getConnection();
+		String sql = "select * from members where id = ?";
+
+		boolean exist = false;
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, id);
+
+			ResultSet rs = pstmt.executeQuery();
+			if (rs.next()) {
+				exist = true;
+			}
+
+			rs.close();
+		} catch(SQLException e) {
+			e.printStackTrace();
+		} finally {
+			JDBC.close(conn, pstmt);
+		}
+		return exist;
 	}
 }

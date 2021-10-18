@@ -16,26 +16,37 @@ public class BoardDAO {
 	private ResultSet rs = null;
 	
 	private final String insertSQL = "insert into board (wpk, title, id, content) values (nvl((select max(wpk) from board),0)+1, ?, ?, ?)";
+	private final String selectSQL = "select max(wpk) as wpk from board";
 	private final String updateSQL = "update board set title = ?, content = ? where wpk = ?";
 	private final String deleteSQL = "delete board where wpk = ?";
 	private final String getBoardListSQL = "select * from board";
 	private final String getBoardSQL = "select * from board where wpk = ?";
 	
-	public void insertBoard(BoardVO invo) {
+	public int insertBoard(BoardVO invo) {
 		
 		conn = JDBC.getConnection();
+		int wpk = -1;
 		
 		try {
 			pstmt = conn.prepareStatement(insertSQL);
 			pstmt.setString(1, invo.getTitle());
 			pstmt.setString(2, invo.getId());
 			pstmt.setString(3, invo.getContent());
-			pstmt.executeUpdate();
+			if (pstmt.executeUpdate() == 0) {
+				return wpk;
+			}
+			
+			pstmt = conn.prepareStatement(selectSQL);
+			rs = pstmt.executeQuery();
+			if (rs.next()) {
+				wpk = rs.getInt("wpk");
+			}
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {
 			JDBC.close(conn, pstmt);
 		}
+		return wpk;
 	}
 	
 	public void updateBoard(BoardVO invo) {

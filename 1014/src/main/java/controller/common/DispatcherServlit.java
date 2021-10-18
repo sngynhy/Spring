@@ -9,6 +9,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import controller.action.ActionForward;
+import controller.action.CheckIDAction;
 import controller.action.InsertBoardAction;
 import controller.action.InsertMemberAction;
 import controller.action.LoginAction;
@@ -53,6 +54,8 @@ public class DispatcherServlit extends HttpServlet {
 			forward = new LogoutAction().execute(request, response);
 		} else if (action.equals("/insertMember.do")) { // 회원가입
 			forward = new InsertMemberAction().execute(request, response);
+		} else if (action.equals("/checkID.do")) {
+			forward = new CheckIDAction().execute(request, response);
 		} else if (action.equals("/insertBoard.do")) { // 게시글 작성
 			forward = new InsertBoardAction().execute(request, response);
 		} else if (action.equals("/searchBoard.do")) { // 게시글 검색

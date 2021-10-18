@@ -7,6 +7,8 @@
 <title>Insert title here</title>
 </head>
 <body>
+<h4>${sessionID}님, 환영합니다!🤗 <a href="logout.do" style="font-size: 12px">로그아웃</a></h4>
+<hr>
 <form action="insertBoatd.do" method="post">
 	<table border="1">
 		<tr>
@@ -27,5 +29,8 @@
 		</tr>
 	</table>
 </form>
+<hr>
+<a href="main.do">전체목록</a><br>
+<a href="insertBoard.jsp">글쓰기</a>
 </body>
 </html>

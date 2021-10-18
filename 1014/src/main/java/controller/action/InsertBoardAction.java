@@ -1,6 +1,7 @@
 package controller.action;
 
 import java.io.IOException;
+import java.io.PrintWriter;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
@@ -25,11 +26,16 @@ public class InsertBoardAction implements Action {
 		bVO.setTitle(request.getParameter("title"));
 		bVO.setContent(request.getParameter("content"));
 		
-		bDAO.insertBoard(bVO);
+		int wpk = bDAO.insertBoard(bVO);
 		
-//		forward.setPath("selectOneBoard.do?wpk=" + request.getParameter("wpk"));
-		forward.setPath("main.do");
-		forward.setRedirect(true);
+		if (wpk == -1) {
+			response.setContentType("text/html; charset=UTF-8");
+			PrintWriter out = response.getWriter();
+			out.println("<script>alert('등록 실패!');history.go(-1)</script>");
+		} else {
+			forward.setPath("selectBoard.do?wpk=" + wpk);
+			forward.setRedirect(true);
+		}
 		return forward;
 	}
 }
