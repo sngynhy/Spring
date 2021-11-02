@@ -9,26 +9,26 @@ import org.springframework.stereotype.Service;
 public class BoardServiceImpl implements BoardService {
 	
 	@Autowired // 의존성 주입
-	private BoardDAO boardDAO;
+	private SpringBoardDAO springBoardDAO;
 	
 	@Override
 	public void insertBoard(BoardVO invo) {
-		boardDAO.insertBoard(invo);
+		springBoardDAO.insertBoard(invo);
 	}
 	@Override
 	public void updateBoard(BoardVO invo) {
-		boardDAO.updateBoard(invo);
+		springBoardDAO.updateBoard(invo);
 	}
 	@Override
 	public void deleteBoard(BoardVO invo) {
-		boardDAO.deleteBoard(invo);
+		springBoardDAO.deleteBoard(invo);
 	}
 	@Override
 	public List<BoardVO> getBoardList(BoardVO invo) {
-		return boardDAO.getBoardList(invo);
+		return springBoardDAO.getBoardList(invo);
 	}
 	@Override
 	public BoardVO getBoard(BoardVO invo) {
-		return boardDAO.getBoard(invo);
+		return springBoardDAO.getBoard(invo);
 	}
 }

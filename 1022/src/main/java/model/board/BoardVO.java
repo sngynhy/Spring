@@ -2,6 +2,8 @@ package model.board;
 
 import java.sql.Date;
 
+import org.springframework.web.multipart.MultipartFile;
+
 public class BoardVO {
 	
 	private int wpk;
@@ -11,6 +13,7 @@ public class BoardVO {
 	private Date wdate;
 	private String type; // 검색 옵션
 	private String keyword; // 검색 키워드
+	private MultipartFile fileUpload;
 	
 	public int getWpk() {
 		return wpk;
@@ -53,6 +56,12 @@ public class BoardVO {
 	}
 	public void setKeyword(String keyword) {
 		this.keyword = keyword;
+	}
+	public MultipartFile getFileUpload() {
+		return fileUpload;
+	}
+	public void setFileUpload(MultipartFile fileUpload) {
+		this.fileUpload = fileUpload;
 	}
 	
 	@Override

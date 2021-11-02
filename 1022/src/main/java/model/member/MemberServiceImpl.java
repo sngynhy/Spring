@@ -9,11 +9,11 @@ import org.springframework.stereotype.Service;
 public class MemberServiceImpl implements MemberService {
 
 	@Autowired
-	private MemberDAO memberDAO;
+	private SpringMemberDAO memberDAO;
 	
 	@Override
-	public void insertMember(MemberVO invo) {
-		memberDAO.insertMember(invo);
+	public boolean insertMember(MemberVO invo) {
+		return memberDAO.insertMember(invo);
 	}
 	@Override
 	public void updateMember(MemberVO invo) {
@@ -30,5 +30,9 @@ public class MemberServiceImpl implements MemberService {
 	@Override
 	public MemberVO login(MemberVO invo) {
 		return memberDAO.login(invo);
+	}
+	@Override
+	public MemberVO checkID(String id) {
+		return memberDAO.checkID(id);
 	}
 }

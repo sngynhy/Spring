@@ -4,12 +4,12 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>404 에러 처리 페이지</title>
 </head>
 <body>
 
-<a href="login.do?lang=en">login by Guest</a><br>
-<a href="login.jsp?lang=ko">내 계정으로 로그인</a>
+<h2>요청 처리 실패! 해당 페이지를 찾을 수 없습니다.</h2>
+실패된 URI : ${pageContext.errorData.requestURI}<br>
 
 </body>
 </html>
