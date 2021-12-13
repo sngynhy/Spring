@@ -8,6 +8,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.seong.app.model.client.ClientService;
+import com.seong.app.model.client.ClientVO;
 
 @Controller
 public class ClientController {
@@ -17,10 +18,32 @@ public class ClientController {
 
 	Logger logger = LoggerFactory.getLogger(ClientController.class);
 
-	@RequestMapping("/test.do")
-	public String c_select(Model model){
-		logger.info("들어옴?");
-		model.addAttribute("datas", clientServiceImpl.c_selectDB());
-		return "test";
+	@RequestMapping("/main.do")
+	public String select(Model model) {
+		logger.info("select");
+		model.addAttribute("datas", clientServiceImpl.select());
+		return "main";
+	}
+	
+	@RequestMapping("/insert.do")
+	public String insert(ClientVO vo) {
+		logger.info("insert");
+		clientServiceImpl.insert(vo);
+		return "redirect:main.do";
+	}
+	
+	@RequestMapping("/delete.do")
+	public String delete(ClientVO vo) {
+		System.out.println(vo);
+		logger.info("delete");
+		clientServiceImpl.delete(vo);
+		return "redirect:main.do";
+	}
+	
+	@RequestMapping("/update.do")
+	public String update(ClientVO vo) {
+		logger.info("update");
+		clientServiceImpl.update(vo);
+		return "redirect:main.do";
 	}
 }

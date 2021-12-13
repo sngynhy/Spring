@@ -42,6 +42,7 @@ public class DatabaseConfiguration {
 		SqlSessionFactoryBean sqlSessionFactoryBean = new SqlSessionFactoryBean();
 		sqlSessionFactoryBean.setDataSource(dataSource);
 		sqlSessionFactoryBean.setMapperLocations(applicationContext.getResources("classpath*:mappers/**/*.xml"));
+		sqlSessionFactoryBean.setTypeAliasesPackage("com.seong.app.model.*");
 		return sqlSessionFactoryBean.getObject();
 	}
 

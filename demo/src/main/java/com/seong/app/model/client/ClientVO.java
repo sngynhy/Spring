@@ -1,5 +1,8 @@
 package com.seong.app.model.client;
 
+import org.apache.ibatis.type.Alias;
+
+@Alias("ClientVO")
 public class ClientVO {
    private String id;
    private String pw;
